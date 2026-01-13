@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Jejak Jiwa Sepatu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#cfe6ff;color:#333}
+
+/* HEADER */
+header{
+background:#d7ecff;
+color:#333;
+padding:20px;
+text-align:center;
+border-bottom:4px solid #9fc9ff;
+}
+header img{width:85px;margin-bottom:10px}
+
+/* NAVBAR */
+nav{
+background:#9fc9ff;
+padding:12px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:3px solid #6ea7e6;
+}
+nav a{
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+margin-right:18px;
+padding:6px 12px;
+border-radius:5px;
+background:#6ea7e6;
+}
+nav a:hover{background:#588fcf;}
+.cart-icon img{width:35px;cursor:pointer}
+
+/* CONTAINER */
+.container{
+padding:40px 20px;
+max-width:1200px;
+margin:auto;
+}
+.section-title{
+text-align:center;
+margin-bottom:30px;
+background:#fff3d9;
+padding:15px;
+border-radius:8px;
+border:1px solid #f0d9a0;
+}
+
+/* PRODUK CARD */
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
+}
+.card{
+background:#ffffff;
+border-radius:12px;
+overflow:hidden;
+border:1px solid #e2e2e2;
+box-shadow:0 4px 8px rgba(0,0,0,.05);
+transition:.3s;
+}
+.card:hover{
+transform:scale(1.03);
+box-shadow:0 6px 12px rgba(0,0,0,.1);
+}
+.card img{
+width:100%;height:190px;object-fit:cover;
+}
+.card-body{padding:15px;text-align:center;}
+.price{color:#d97706;font-weight:bold;margin-bottom:10px;font-size:17px;}
+select{width:100%;padding:6px;margin-bottom:8px;border-radius:6px;border:1px solid #c7c7c7;}
+.btn{
+background:#f0b86e;border:none;padding:9px 15px;border-radius:6px;
+cursor:pointer;font-weight:bold;color:#fff
+}
+.btn:hover{background:#e2a45a}
+
+/* ABOUT */
+.about{
+background:#ffffff;padding:25px;border-radius:10px;
+box-shadow:0 4px 8px rgba(0,0,0,.1);border:1px solid #e2e2e2;
+}
+
+/* REVIEW BOX */
+.review-box{
+background:#ffffff;
+padding:20px;
+margin-top:20px;
+border-radius:12px;
+border:1px solid #e2e2e2;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+.review-item{margin-bottom:20px;}
+.review-name{font-weight:bold;font-size:18px;color:#333;}
+.stars{color:gold;font-size:20px;margin:4px 0;}
+
+/* FOOTER */
+footer{
+background:#9fc9ff;color:#fff;text-align:center;padding:15px;margin-top:40px;
+}
+
+/* MODAL CART */
+.modal{
+display:none;position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:999;
+}
+.modal-content{
+background:#ffffff;width:92%;max-width:520px;padding:20px;border-radius:12px;
+max-height:88%;overflow:auto;border:2px solid #9fc9ff;
+}
+.close{float:right;cursor:pointer;font-weight:bold;font-size:18px;}
+.total{font-weight:bold;margin:10px 0}
+.modal img{
+width:60px;height:60px;object-fit:cover;border-radius:6px;border:1px solid #ccc;
+}
+
+/* CARA PEMESANAN */
+#cara-pesan{
+background:#ffffff;padding:25px;border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,.1);border:1px solid #e2e2e2;margin-top:20px;
+}
+#cara-pesan h2{text-align:center;margin-bottom:15px;color:#588fcf;}
+#cara-pesan li{
+margin:10px 0;background:#f8efe0;padding:10px;border-radius:6px;border:1px solid #edd9b4;
+}
+
+/* KONTAK */
+#kontak-page{
+background:#c2f2f0;padding:40px 20px;margin-top:30px;
+border-top:4px solid #27c4b8;
+}
+.kontak-box{
+max-width:650px;margin:auto;background:#ffffff;padding:25px;
+border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.1);
+border:2px solid #9feae4;
+}
+.kontak-box h2{text-align:center;color:#149e91;margin-bottom:20px;}
+.kontak-info{
+line-height:1.7;font-size:16px;background:#eafffd;
+padding:15px;border-radius:10px;border:1px solid #b5f7f2;
+}
+.kontak-info p{margin:8px 0;font-size:16px}
+
+/* tombol maps */
+.maps-btn{
+display:inline-block;
+background:#6ea7e6;
+color:white;
+padding:10px 18px;
+border-radius:8px;
+font-weight:bold;
+text-decoration:none;
+margin-top:15px;
+transition:.2s;
+}
+.maps-btn:hover{background:#588fcf;}
+
+/* RIWAYAT PEMESANAN */
+#riwayat{
+padding:40px 20px;
+max-width:1200px;
+margin:auto;
+margin-top:40px;
+}
+.history-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+gap:20px;
+}
+.history-card{
+background:#ffffff;
+border-radius:12px;
+border:1px solid #e2e2e2;
+padding:15px;
+box-shadow:0 4px 8px rgba(0,0,0,.08);
+transition:.3s;
+}
+.history-card:hover{transform:scale(1.03);}
+.history-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:8px;
+}
+.history-info p{margin:5px 0;font-size:15px;}
+</style>
+</head>
+<body>
+
+<header>
+<img src="logo.jpeg" alt="Logo Jejak Jiwa">
+<h1>Jejak Jiwa Sepatu</h1>
+<p>Sepatu kasual ringan yang nyaman dipakai setiap hari.</p>
+<p>Cocok untuk pria dan wanita.</p>
+</header>
+
+<nav>
+<div>
+<a href="#produk">Produk</a>
+<a href="#cara-pesan">Cara Pemesanan</a>
+<a href="#tentang">Tentang</a>
+<a href="#review">Review</a>
+<a href="#kontak-page">Kontak</a>
+<a href="#riwayat">Riwayat</a> <!-- TAMBAHAN -->
+</div>
+<div class="cart-icon">
+<img src="keranjang.jpg" onclick="openCart()">
+</div>
+</nav>
+
+<!-- PRODUK -->
+<div class="container" id="produk">
+<div class="section-title"><h2>Koleksi Sepatu Jejak Jiwa</h2></div>
+
+<div class="products">
+
+<!-- PRODUK-PRODUK -->
+<div class="card"><img src="pvnblue.jpeg"><div class="card-body"><h3>Jejak Jiwa PVN Blue</h3><p>Desain ringan dengan warna biru lembut.</p><p class="price">Rp 125000</p><select id="s1"></select><button class="btn" onclick="addToCart('Jejak Jiwa PVN Blue',125000,'s1','pvnblue.jpeg')">Tambah</button></div></div>
+
+<div class="card"><img src="pvngrey.jpeg"><div class="card-body"><h3>Jejak Jiwa Casual Grey</h3><p>Warna abu elegan.</p><p class="price">Rp 125000</p><select id="s2"></select><button class="btn" onclick="addToCart('Casual Grey',125000,'s2','pvngrey.jpeg')">Tambah</button></div></div>
+
+<div class="card"><img src="sepatu3.jpeg"><div class="card-body"><h3>Jejak Jiwa Casual Pink</h3><p>Warna pink lembut.</p><p class="price">Rp 125000</p><select id="s3"></select><button class="btn" onclick="addToCart('Casual Pink',125000,'s3','sepatu3.jpeg')">Tambah</button></div></div>
+
+<div class="card"><img src="langkahsemesta.jpeg"><div class="card-body"><h3>Langkah Semesta</h3><p>Model kuat dan nyaman.</p><p class="price">Rp 165000</p><select id="s4"></select><button class="btn" onclick="addToCart('Langkah Semesta',165000,'s4','langkahsemesta.jpeg')">Tambah</button></div></div>
+
+<div class="card"><img src="tapakrimba.jpeg"><div class="card-body"><h3>Tapak Rimba</h3><p>Warna alam dan kokoh.</p><p class="price">Rp 179000</p><select id="s5"></select><button class="btn" onclick="addToCart('Tapak Rimba',179000,'s5','tapakrimba.jpeg')">Tambah</button></div></div>
+
+<div class="card"><img src="tapaklestari.jpeg"><div class="card-body"><h3>Tapak Lestari</h3><p>Nyaman dan ringan.</p><p class="price">Rp 149000</p><select id="s6"></select><button class="btn" onclick="addToCart('Tapak Lestari',149000,'s6','tapaklestari.jpeg')">Tambah</button></div></div>
+
+<div class="card"><img src="tapakputih.jpeg"><div class="card-body"><h3>Tapak Putih</h3><p>Warna cerah dan bersih.</p><p class="price">Rp 159000</p><select id="s7"></select><button class="btn" onclick="addToCart('Tapak Putih',159000,'s7','tapakputih.jpeg')">Tambah</button></div></div>
+
+<div class="card"><img src="cahayapagi.png"><div class="card-body"><h3>Cahaya Pagi</h3><p>Warna lembut.</p><p class="price">Rp 129000</p><select id="s8"></select><button class="btn" onclick="addToCart('Cahaya Pagi',129000,'s8','cahayapagi.png')">Tambah</button></div></div>
+
+<div class="card"><img src="tanahperjalanan.jpeg"><div class="card-body"><h3>Tanah Perjalanan</h3><p>Stabil dan nyaman.</p><p class="price">Rp 199000</p><select id="s9"></select><button class="btn" onclick="addToCart('Tanah Perjalanan',199000,'s9','tanahperjalanan.jpeg')">Tambah</button></div></div>
+
+</div>
+</div>
+
+<!-- CARA PEMESANAN -->
+<div class="container" id="cara-pesan">
+<h2>Cara Pemesanan</h2>
+<ol>
+<li>Pilih sepatu dan ukuran.</li>
+<li>Tambah ke keranjang.</li>
+<li>Buka keranjang.</li>
+<li>Pilih barang untuk checkout.</li>
+<li>Isi data pengiriman.</li>
+<li>Pembayaran hanya transfer DANA atau rekening.</li>
+<li>Kirim bukti pembayaran ke WhatsApp.</li>
+</ol>
+</div>
+
+<!-- TENTANG -->
+<div class="container" id="tentang">
+<div class="section-title">
+<h2 style="color:#0a3d62;font-weight:700;letter-spacing:1px;background:linear-gradient(to right,#a8d8ff,#ffeccc);display:inline-block;padding:6px 14px;border-radius:8px;">Tentang Kami</h2>
+</div>
+
+<div class="about" style="background:linear-gradient(to bottom,#ffffff,#f4f8ff);border-radius:14px;padding:25px;box-shadow:0 4px 10px rgba(0,0,0,0.08);border-left:6px solid #82b7f8;">
+
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+<img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" style="width:28px;opacity:.8">
+<p style="color:#1c1c1c;font-size:15px;font-weight:bold;margin:0">Jejak Jiwa membawa konsep langkah ringan dalam gaya sederhana.</p>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+<img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" style="width:28px;opacity:.8">
+<p style="color:#555;font-size:14px;margin:0">Desainnya rapi dan lembut agar nyaman dipakai dalam rutinitas harian.</p>
+</div>
+
+<div style="display:flex;align-items:center;gap:12px;">
+<img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" style="width:28px;opacity:.8">
+<p style="color:#333;font-size:14px;font-style:italic;margin:0">Kami membawa harmoni antara simple, nyaman, dan estetika modern.</p>
+</div>
+
+</div>
+</div>
+
+<!-- REVIEW -->
+<div class="container" id="review">
+<div class="section-title"><h2>Review Pelanggan</h2></div>
+
+<div class="review-box">
+<div class="review-item"><p class="review-name">Nanda</p><p class="stars">★★★★★</p><p>Nyaman dipakai dan kualitasnya bagus.</p></div>
+<div class="review-item"><p class="review-name">Sari</p><p class="stars">★★★★★</p><p>Warnanya cantik dan bahannya ringan.</p></div>
+<div class="review-item"><p class="review-name">Mirna</p><p class="stars">★★★★★</p><p>Modelnya bagus dan pas dipakai harian.</p></div>
+<div class="review-item"><p class="review-name">Deri</p><p class="stars">★★★★★</p><p>Kuat, nyaman, dan sesuai harga.</p></div>
+</div>
+</div>
+
+<!-- KONTAK -->
+<div id="kontak-page">
+<div class="kontak-box">
+<h2>Kontak Jejak Jiwa</h2>
+<div class="kontak-info">
+<p><strong>Email:</strong> jejakjiwa@gmail.com</p>
+<p><strong>Alamat:</strong> Jl. Besar Biru Biru Desa Selamat</p>
+<p><strong>WhatsApp:</strong> 083890817696</p>
+<p><strong>Instagram:</strong> @jejakjiwa.sepatu</p>
+<p><strong>Jam Operasional:</strong> Senin-Sabtu 09.00-20.00 WIB</p>
+
+<a href="https://www.google.com/maps/search/?api=1&query=CMMQ+5C2,+Aji+Baho,+Sibiru-biru,+Deli+Serdang,+Sumatera+Utara" target="_blank" class="maps-btn">
+📍 Lihat Lokasi di Google Maps
+</a>
+</div>
+</div>
+</div>
+
+<footer>&copy; 2026 Jejak Jiwa Sepatu</footer>
+
+<!-- RIWAYAT PEMESANAN -->
+<div class="container" id="riwayat">
+<div class="section-title"><h2>Riwayat Pemesanan</h2></div>
+
+<div class="history-grid">
+
+<div class="history-card">
+<img src="pvnblue.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Andi Pratama</p>
+<p><strong>Sepatu:</strong> Jejak Jiwa PVN Blue</p>
+<p><strong>Ukuran:</strong> 40</p>
+<p><strong>Harga:</strong> Rp 125000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="pvngrey.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Siti Rahma</p>
+<p><strong>Sepatu:</strong> Jejak Jiwa Casual Grey</p>
+<p><strong>Ukuran:</strong> 38</p>
+<p><strong>Harga:</strong> Rp 125000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="sepatu3.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Joko Saputra</p>
+<p><strong>Sepatu:</strong> Jejak Jiwa Casual Pink</p>
+<p><strong>Ukuran:</strong> 41</p>
+<p><strong>Harga:</strong> Rp 125000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="langkahsemesta.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Rina Melati</p>
+<p><strong>Sepatu:</strong> Langkah Semesta</p>
+<p><strong>Ukuran:</strong> 39</p>
+<p><strong>Harga:</strong> Rp 165000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="tapakrimba.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Wahyu Firmansyah</p>
+<p><strong>Sepatu:</strong> Tapak Rimba</p>
+<p><strong>Ukuran:</strong> 42</p>
+<p><strong>Harga:</strong> Rp 179000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="tapaklestari.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Dwi Handayani</p>
+<p><strong>Sepatu:</strong> Tapak Lestari</p>
+<p><strong>Ukuran:</strong> 37</p>
+<p><strong>Harga:</strong> Rp 149000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="tapakputih.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Reza Kurniawan</p>
+<p><strong>Sepatu:</strong> Tapak Putih</p>
+<p><strong>Ukuran:</strong> 40</p>
+<p><strong>Harga:</strong> Rp 159000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="cahayapagi.png">
+<div class="history-info">
+<p><strong>Nama:</strong> Melinda Sari</p>
+<p><strong>Sepatu:</strong> Cahaya Pagi</p>
+<p><strong>Ukuran:</strong> 36</p>
+<p><strong>Harga:</strong> Rp 129000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="tanahperjalanan.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Budi Hartono</p>
+<p><strong>Sepatu:</strong> Tanah Perjalanan</p>
+<p><strong>Ukuran:</strong> 41</p>
+<p><strong>Harga:</strong> Rp 199000</p>
+</div>
+</div>
+
+<div class="history-card">
+<img src="sepatu3.jpeg">
+<div class="history-info">
+<p><strong>Nama:</strong> Alifa Zahra</p>
+<p><strong>Sepatu:</strong> Jejak Jiwa Casual Pink</p>
+<p><strong>Ukuran:</strong> 38</p>
+<p><strong>Harga:</strong> Rp 125000</p>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- MODAL KERANJANG -->
+<div class="modal" id="cartModal">
+<div class="modal-content">
+<span class="close" onclick="closeCart()">X</span>
+<h3>Keranjang Belanja</h3>
+<ul id="modalItems"></ul>
+<p class="total">Total Bayar: Rp <span id="modalTotal">0</span></p>
+
+<h4>Metode Pembayaran</h4>
+<label><input type="radio" checked> Transfer DANA / Rekening</label>
+<p style="font-size:13px;color:#777">COD tidak tersedia</p>
+
+<input type="text" id="nama" placeholder="Nama Lengkap">
+<input type="text" id="hp" placeholder="Nomor WhatsApp">
+<textarea id="alamat" placeholder="Alamat Lengkap"></textarea>
+
+<button class="btn" onclick="checkout()">Checkout via WhatsApp</button>
+</div>
+</div>
+
+<script>
+let cart=[];
+
+// ukuran sepatu
+window.onload=()=>{
+for(let i=1;i<=10;i++){
+let s=document.getElementById('s'+i);
+if(s){
+s.innerHTML='<option value="">Pilih Ukuran</option>';
+for(let u=25;u<=42;u++){
+s.innerHTML+=`<option value="${u}">${u}</option>`;
+}
+}
+}};
+
+function addToCart(n,p,id,img){
+let size=document.getElementById(id).value;
+if(!size){alert("Pilih ukuran dulu!");return;}
+cart.push({name:n,size:size,price:p,img:img});
+alert("Ditambahkan ke keranjang");
+}
+function openCart(){
+renderCart();
+document.getElementById('cartModal').style.display='flex';
+}
+function closeCart(){
+document.getElementById('cartModal').style.display='none';
+}
+function renderCart(){
+let list=document.getElementById('modalItems');
+list.innerHTML='';
+let total=0;
+cart.forEach((item,i)=>{
+let li=document.createElement('li');
+li.innerHTML=`
+<div style="display:flex;gap:10px;align-items:center;">
+<img src="${item.img}">
+<div>
+<label><input type="checkbox" checked onchange="updateTotal()"> ${item.name} | Rp ${item.price}</label><br>
+Ukuran:
+<select onchange="cart[${i}].size=this.value">
+${Array.from({length:18},(_,u)=>{let s=u+25;return `<option value="${s}" ${s==item.size?'selected':''}>${s}</option>`}).join('')}
+</select>
+</div>
+</div>
+`;
+list.appendChild(li);
+total+=item.price;
+});
+document.getElementById('modalTotal').textContent=total;
+}
+
+function updateTotal(){
+let checks=document.querySelectorAll('#modalItems input[type=checkbox]');
+let total=0;
+checks.forEach((c,i)=>{if(c.checked) total+=cart[i].price;});
+document.getElementById('modalTotal').textContent=total;
+}
+
+function checkout(){
+let checks=document.querySelectorAll('#modalItems input[type=checkbox]');
+let nama=document.getElementById('nama').value;
+let hp=document.getElementById('hp').value;
+let alamat=document.getElementById('alamat').value;
+
+if(!nama||!hp||!alamat){alert("Lengkapi data!");return;}
+
+let pesan=`Halo Jejak Jiwa,%0ASaya ingin memesan:%0A`;
+let total=0;
+
+checks.forEach((c,i)=>{
+if(c.checked){
+let it=cart[i];
+pesan+=`- ${it.name} | Ukuran ${it.size} | Rp ${it.price}%0A`;
+total+=it.price;
+}
+});
+pesan+=`%0ATotal Bayar: Rp ${total}%0A`;
+pesan+=`Metode Pembayaran: Transfer (Tidak COD)%0A`;
+pesan+=`Nama: ${nama}%0AHP: ${hp}%0AAlamat: ${alamat}`;
+
+let no="6283890817696";
+window.open(`https://wa.me/${no}?text=${pesan}`,'_blank');
+}
+</script>
+
+</body>
+</html>
